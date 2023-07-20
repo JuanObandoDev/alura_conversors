@@ -4,7 +4,6 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 
 public class TemperatureConvertor extends Convertor {
-    private String temperature;
     private String destinyTemperature;
     private static final Map<String, Double> TEMPERATURES = new HashMap<String, Double>();
 
@@ -25,7 +24,7 @@ public class TemperatureConvertor extends Convertor {
                 null,
                 options,
                 "None");
-        return selected.replace("Celsius to ", "");
+        return super.separateSelection(selected);
     }
 
     public String[] generateTemperatureOptions() {
@@ -44,7 +43,7 @@ public class TemperatureConvertor extends Convertor {
 
     public void showResult() {
         String result = "";
-        switch (this.temperature) {
+        switch (super.getOrigin()) {
             case "Fahrenheit":
                 result = String.format("%.2f", (super.getValueToConvert() * 1.8) + 32) + "F°";
                 break;
