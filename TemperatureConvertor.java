@@ -1,21 +1,24 @@
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.JOptionPane;
 
 public class TemperatureConvertor extends Convertor {
     private String temperature;
-    private final String[] TEMPERATURES = {
-            "Fahrenheit",
-            "Kelvin"
-    };
+    private String destinyTemperature;
+    Map<String, Double> TEMPERATURES = new HashMap<String, Double>();
 
     public TemperatureConvertor() {
         super();
-        this.temperature = temperature();
+        TEMPERATURES.put("Fahrenheit", (super.getValueToConvert() * 1.8) + 32);
+        TEMPERATURES.put("Kelvin", super.getValueToConvert() + 273.15);
+        this.destinyTemperature = setDestinyTemperature();
     }
 
-    public String temperature() {
-        String[] options = new String[TEMPERATURES.length];
-        for (int i = 0; i < TEMPERATURES.length; i++) {
-            options[i] = "Celsius to " + TEMPERATURES[i];
+    public String setDestinyTemperature() {
+        String[] options = new String[TEMPERATURES.size()];
+        for (int i = 0; i < TEMPERATURES.size(); i++) {
+            // options[i] = "Celsius to " + TEMPERATURES[i];
         }
         String selected = (String) JOptionPane.showInputDialog(
                 null,
