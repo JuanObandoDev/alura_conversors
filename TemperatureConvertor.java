@@ -9,8 +9,8 @@ public class TemperatureConvertor extends Convertor {
 
     public TemperatureConvertor() {
         super();
-        TEMPERATURES.put("Fahrenheit", (super.getValueToConvert() * 1.8) + 32);
-        TEMPERATURES.put("Kelvin", super.getValueToConvert() + 273.15);
+        TEMPERATURES.put("Fahrenheit", 0.0);
+        TEMPERATURES.put("Kelvin", 0.0);
         this.destinyTemperature = setDestinyTemperature();
     }
 
@@ -28,10 +28,10 @@ public class TemperatureConvertor extends Convertor {
     }
 
     public String[] generateTemperatureOptions() {
-        String[] options = new String[TEMPERATURES.size()];
+        String[] options = new String[TEMPERATURES.size() * 2];
         int j = 0;
         for (int i = 0; i < options.length; i++) {
-            if (i < 4) {
+            if (i < 2) {
                 options[i] = "Celsius to " + TEMPERATURES.keySet().toArray()[i];
             } else {
                 options[i] = TEMPERATURES.keySet().toArray()[j] + " to Celsius";
@@ -44,15 +44,26 @@ public class TemperatureConvertor extends Convertor {
     public void showResult() {
         String result = "";
         switch (super.getOrigin()) {
+            case "Celsius":
+                if (this.destinyTemperature.equals("Fahrenheit")) {
+                    result = super.getValueToConvert() + "C° = "
+                            + String.format("%.2f", (super.getValueToConvert() * 1.8) + 32) + "F°";
+                } else {
+                    result = super.getValueToConvert() + "C° = "
+                            + String.format("%.2f", (super.getValueToConvert() + 273.15)) + "K°";
+                }
+                break;
             case "Fahrenheit":
-                result = String.format("%.2f", (super.getValueToConvert() * 1.8) + 32) + "F°";
+                result = super.getValueToConvert() + "F° = "
+                        + String.format("%.2f", ((super.getValueToConvert() - 32) / 1.8)) + "C°";
                 break;
             case "Kelvin":
-                result = String.format("%.2f", super.getValueToConvert() + 273.15) + "K°";
+                result = super.getValueToConvert() + "K° = "
+                        + String.format("%.2f", (super.getValueToConvert() - 273.15)) + "C°";
                 break;
         }
         JOptionPane.showMessageDialog(
                 null,
-                super.getValueToConvert() + "C° = " + result);
+                result);
     }
 }
