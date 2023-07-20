@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  */
 public abstract class Convertor {
     private int valueToConvert;
+    private String origin;
 
     /**
      * This constructor calls the method valueToConvert() and sets the value to
@@ -19,6 +20,7 @@ public abstract class Convertor {
      */
     public Convertor() {
         this.valueToConvert = valueToConvert();
+        this.origin = "";
     }
 
     /**
@@ -28,6 +30,15 @@ public abstract class Convertor {
      */
     public int getValueToConvert() {
         return this.valueToConvert;
+    }
+
+    /**
+     * This method returns the origin of the convertor
+     * 
+     * @return
+     */
+    public String getOrigin() {
+        return this.origin;
     }
 
     /**
@@ -54,5 +65,11 @@ public abstract class Convertor {
                     "Please enter a valid number");
             return valueToConvert();
         }
+    }
+
+    public String separateSelection(String selected) {
+        String[] parts = selected.split(" ");
+        this.origin = parts[0];
+        return parts[2];
     }
 }
