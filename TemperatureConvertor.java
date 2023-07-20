@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class TemperatureConvertor extends Convertor {
     private String temperature;
     private String destinyTemperature;
-    Map<String, Double> TEMPERATURES = new HashMap<String, Double>();
+    private static final Map<String, Double> TEMPERATURES = new HashMap<String, Double>();
 
     public TemperatureConvertor() {
         super();
@@ -16,10 +16,7 @@ public class TemperatureConvertor extends Convertor {
     }
 
     public String setDestinyTemperature() {
-        String[] options = new String[TEMPERATURES.size()];
-        for (int i = 0; i < TEMPERATURES.size(); i++) {
-            // options[i] = "Celsius to " + TEMPERATURES[i];
-        }
+        String[] options = generateTemperatureOptions();
         String selected = (String) JOptionPane.showInputDialog(
                 null,
                 "Select a temperature",
@@ -29,6 +26,20 @@ public class TemperatureConvertor extends Convertor {
                 options,
                 "None");
         return selected.replace("Celsius to ", "");
+    }
+
+    public String[] generateTemperatureOptions() {
+        String[] options = new String[TEMPERATURES.size()];
+        int j = 0;
+        for (int i = 0; i < options.length; i++) {
+            if (i < 4) {
+                options[i] = "Celsius to " + TEMPERATURES.keySet().toArray()[i];
+            } else {
+                options[i] = TEMPERATURES.keySet().toArray()[j] + " to Celsius";
+                j++;
+            }
+        }
+        return options;
     }
 
     public void showResult() {
