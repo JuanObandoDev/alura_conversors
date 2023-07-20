@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class CurrencyConvertor extends Convertor {
     private static final Map<String, Double> CURRENCIES = new HashMap<String, Double>();
-    private String currency;
     private String destinyCurrency;
 
     /**
@@ -45,23 +44,7 @@ public class CurrencyConvertor extends Convertor {
                 null,
                 options,
                 "None");
-        return separateSelection(selected);
-    }
-
-    /**
-     * This method separates the currency from the selected option and returns it
-     * 
-     * selected is a string like "Pesos to Dollar" so we need to separate the
-     * currency
-     * getting an array like ["Pesos", "to", "Dollar"]
-     * 
-     * @param selected
-     * @return parts[2];
-     */
-    public String separateSelection(String selected) {
-        String[] parts = selected.split(" ");
-        this.currency = parts[0];
-        return parts[2];
+        return super.separateSelection(selected);
     }
 
     /**
@@ -88,14 +71,15 @@ public class CurrencyConvertor extends Convertor {
      */
     public void showResult() {
         double result = 0;
-        if (this.currency.equals("Pesos")) {
+        if (super.getOrigin().equals("Pesos")) {
             result = super.getValueToConvert() * CURRENCIES.get(this.destinyCurrency);
         } else {
-            result = super.getValueToConvert() / CURRENCIES.get(this.currency);
+            result = super.getValueToConvert() / CURRENCIES.get(super.getOrigin());
         }
         JOptionPane.showMessageDialog(
                 null,
-                "$" + super.getValueToConvert() + " " + this.currency + " is $" + String.format("%.2f", result) + " "
+                "$" + super.getValueToConvert() + " " + super.getOrigin() + " is $" + String.format("%.2f", result)
+                        + " "
                         + this.destinyCurrency);
     }
 }
