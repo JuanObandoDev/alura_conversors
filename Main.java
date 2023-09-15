@@ -1,12 +1,29 @@
 import javax.swing.JOptionPane;
 
+/**
+ * This class init the program and contains the main method
+ * 
+ * @version 1.0.0
+ * @since 1.0.0
+ * @see TemperatureConvertor
+ * @see CurrencyConvertor
+ * 
+ * @autor JuanObandoDev
+ */
 public class Main {
-
+    /**
+     * This array contains the options of convertors
+     */
     private static final String[] OPTIONS = {
             "Temperature convertor",
             "Currency convertor"
     };
 
+    /**
+     * This method is the main method and init the program
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         int option = 0;
         try {
@@ -33,6 +50,11 @@ public class Main {
         }
     }
 
+    /**
+     * This method shows the main menu
+     * 
+     * @return (String) JOptionPane.showInputDialog
+     */
     public static String mainMenu() {
         return (String) JOptionPane.showInputDialog(
                 null,
@@ -44,6 +66,11 @@ public class Main {
                 "None");
     }
 
+    /**
+     * This method asks the user if he wants to continue
+     * 
+     * @return JOptionPane.showConfirmDialog
+     */
     public static int continueOrNot() {
         return JOptionPane.showConfirmDialog(
                 null,

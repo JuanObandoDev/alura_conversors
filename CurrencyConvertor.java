@@ -67,7 +67,9 @@ public class CurrencyConvertor extends Convertor {
     }
 
     /**
+     * This method shows the result of the convertion
      * 
+     * @see Convertor#getValueToConvert()
      */
     public void showResult() {
         double result = 0;

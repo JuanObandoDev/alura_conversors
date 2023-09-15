@@ -35,7 +35,7 @@ public abstract class Convertor {
     /**
      * This method returns the origin of the convertor
      * 
-     * @return
+     * @return this.origin
      */
     public String getOrigin() {
         return this.origin;
@@ -67,6 +67,13 @@ public abstract class Convertor {
         }
     }
 
+    /**
+     * This method separates the selection of the user and returns the value to
+     * convert
+     * 
+     * @param selected
+     * @return parts[2]
+     */
     public String separateSelection(String selected) {
         String[] parts = selected.split(" ");
         this.origin = parts[0];
